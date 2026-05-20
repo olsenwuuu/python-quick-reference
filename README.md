@@ -42,7 +42,7 @@ A highly scannable cheat sheet for data cleaning, text transformation, and valid
 
 ## 3. Transformations
 
-### `count()`
+### `replace()`
 * **Definition:** Replaces all occurrences of a specified substring with another substring.
 * **Use Case:** Standardizing text or removing unwanted characters from financial data (like removing dollar signs or commas from a price column).
 * **Example:**
