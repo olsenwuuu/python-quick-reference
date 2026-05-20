@@ -311,3 +311,16 @@ A highly scannable cheat sheet for data cleaning, text transformation, and valid
           print("Error: Encountered an unknown status tracking code.")
           
   # Output: "Error: Target database endpoint not found."
+
+---
+
+### `isalnum()`
+* **Definition:** Returns `True` if all characters in the string are alphanumeric (either letters or numbers) and there is at least one character. It returns `False` if the string contains spaces, punctuation, symbols, or is completely empty.
+* **Use Case:** Stripping or validating input strings (like usernames or raw identifiers) to ensure special characters or punctuation marks haven't slipped in, or checking the boundaries of an input field like an email's first and last characters.
+* **Example:**
+  ```python
+  username = "olsenwu101"
+  bad_username = "olsen_wu!"
+  
+  print(username.isalnum())      # Output: True
+  print(bad_username.isalnum())  # Output: False (Contains '_' and '!')
