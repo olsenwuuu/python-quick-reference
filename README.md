@@ -324,3 +324,19 @@ A highly scannable cheat sheet for data cleaning, text transformation, and valid
   
   print(username.isalnum())      # Output: True
   print(bad_username.isalnum())  # Output: False (Contains '_' and '!')
+
+### Advanced f-string Expressions
+* **Definition:** You can perform inline math, variable modifications, or string manipulations directly inside the curly braces `{}` of an f-string.
+* **Use Case:** Creating readable outputs where data needs to be modified on the fly (e.g., calculating percentages, capitalizing names, or getting string lengths) without saving them to separate variables first.
+* **Example:**
+  ```python
+  first_name = "olsen"
+  raw_password = "  Thugmansion22!  "
+  
+  # Evaluating logic directly inside the curly braces
+  print(f"Welcome, {first_name.capitalize()}!") 
+  print(f"Your cleaned password length is: {len(raw_password.strip())} characters.")
+  
+  # Output:
+  # Welcome, Olsen!
+  # Your cleaned password length is: 14 characters.
