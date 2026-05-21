@@ -340,3 +340,62 @@ A highly scannable cheat sheet for data cleaning, text transformation, and valid
   # Output:
   # Welcome, Olsen!
   # Your cleaned password length is: 14 characters.
+
+---
+
+## Control Flow Iteration
+
+### `for` loop
+* **Definition:** A control flow statement used to iterate (loop) over a sequence (such as a list, tuple, string, or range). It executes a block of code repeatedly, once for each element present in the sequence.
+* **Use Case:** Automating repetitive tasks, such as scanning through a list of database rows, verifying a batch of user emails, or executing a snippet of code a set number of times.
+* **Example:**
+  ```python
+  # Iterating through a tuple of system status codes
+  status_codes = (200, 404, 500)
+  
+  for code in status_codes:
+      print(f"Processing server status: {code}")
+      
+  # Output:
+  # Processing server status: 200
+  # Processing server status: 404
+  # Processing server status: 500
+
+  ### 💡 How the `for` Loop Works (Under the Hood)
+
+When you write a `for` loop, you can visualize it as an automated conveyor belt. 
+
+
+
+1. **The Sequence:** Your collection (the tuple or list) sits on the conveyor belt.
+2. **The Target Variable:** The variable name you create (like `code` above) acts as an empty basket at the end of the belt.
+3. **The Step:** Python automatically picks up the first item, drops it into your basket, runs all the indented code below it, dumps the basket out, and automatically grabs the next item until the belt is empty.
+
+---
+
+### `range()`
+* **Definition:** A built-in function that generates an immutable sequence of numbers over time. It can take up to three arguments: `range(start, stop, step)`. The `start` integer defaults to 0, the sequence stops **before** reaching the `stop` integer, and the `step` size defaults to 1.
+* **Use Case:** Creating loops that need to execute a block of code a specific number of times without requiring a pre-existing list or tuple of data.
+* **Example:**
+  ```python
+  # Looping exactly 3 times (from 0 up to, but not including, 3)
+  for i in range(3):
+      print(f"Execution count: {i}")
+      
+  # Output:
+  # Execution count: 0
+  # Execution count: 1
+  # Execution count: 2
+
+  ### 💡 The 3 Ways to Use `range()`
+
+Depending on how many parameters you pass into the parentheses, you can completely customize how your number sequences are built:
+
+| Syntax | Description | Example | Numbers Generated |
+| :--- | :--- | :--- | :--- |
+| **`range(stop)`** | Counts up from `0` to your stop number (exclusive). | `range(4)` | `0, 1, 2, 3` |
+| **`range(start, stop)`** | Counts from your specific start point to your stop point. | `range(5, 8)` | `5, 6, 7` |
+| **`range(start, stop, step)`** | Counts up by a specific interval (step value) each time. | `range(2, 11, 2)` | `2, 4, 6, 8, 10` |
+
+### ⚠️ The Golden Rule: The Stop Value is Exclusive!
+The most common mistake when using `range()` is forgetting that **it never actually hits the stop number**. If you need a loop to run from 1 to 10, writing `range(1, 10)` will cut off early at 9. You have to write `range(1, 11)` to include the number 10!
