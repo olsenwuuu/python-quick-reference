@@ -399,3 +399,81 @@ Depending on how many parameters you pass into the parentheses, you can complete
 
 ### ⚠️ The Golden Rule: The Stop Value is Exclusive!
 The most common mistake when using `range()` is forgetting that **it never actually hits the stop number**. If you need a loop to run from 1 to 10, writing `range(1, 10)` will cut off early at 9. You have to write `range(1, 11)` to include the number 10!
+
+---
+
+## Advanced Control Flow
+
+### Nested Loops
+* **Definition:** A nested loop is a loop inside another loop. The "outer loop" runs once, then the "inner loop" runs completely through its entire sequence before the outer loop moves on to its next step.
+* **Use Case:** Working with multi-dimensional data data grids (like Excel spreadsheets, coordinate matrices, or images pixels), or generating combinations of multiple lists (like matching every shirt color with every pants size).
+* **Example:**
+  ```python
+  # Combining weeks and days using nested loops
+  weeks = (1, 2)
+  days = ("Mon", "Tue")
+  
+  for week in weeks:          # Outer Loop
+      for day in days:        # Inner Loop
+          print(f"Week {week}, Day: {day}")
+          
+  # Output:
+  # Week 1, Day: Mon
+  # Week 1, Day: Tue
+  # Week 2, Day: Mon
+  # Week 2, Day: Tue
+
+### 💡 The Clock Analogy: How Nested Loops Move
+
+The easiest way to understand nested loops without getting dizzy is to think of a **clock**. 
+
+* The **outer loop** is like the **hour hand**. It only moves forward by one tick after a long time.
+* The **inner loop** is like the **minute hand**. It has to spin all the way around a complete circle ($60$ times) before the hour hand is allowed to move even once.
+
+Whenever you look at a nested loop, always remember that the inner loop must finish its *entire* job before the outer loop can take its next step!
+
+---
+
+## 17. Conditional Iteration
+
+### `while` Loop
+* **Definition:** A control flow statement that repeatedly executes a block of code as long as a specified condition remains `True`. Unlike a `for` loop, which has a predetermined end, a `while` loop runs an indefinite number of times until its condition is broken.
+* **Use Case:** Creating game loops, listening for user input (like waiting for someone to type "exit"), or running a process until a specific file appears in a folder.
+* **Example:**
+  ```python
+  # A simple conditional while loop
+  countdown = 3
+  
+  while countdown > 0:
+      print(f"T-minus {countdown}")
+      countdown -= 1  # Decrementing keeps us from looping forever
+      
+  # Output:
+  # T-minus 3
+  # T-minus 2
+  # T-minus 1
+
+### 💡 The 2 Types of `while` Loops Explained
+
+Here is how those two different kinds of loops work in practice. You can add this comparison breakdown right below your definition block:
+
+#### 1. Conditional Loops (Count-Controlled)
+This acts like a gatekeeper. Python checks the condition *before* letting the code run. You must manually change a variable inside the loop (like subtracting 1) so the condition eventually becomes `False`.
+
+
+
+```python
+# Runs exactly while the condition is true
+tickets_left = 3
+while tickets_left > 0:
+    print("Ticket sold!")
+    tickets_left -= 1
+```
+#### 2. Event-Controlled Loops (while True + break)
+```python
+# Runs forever until an event triggers the break
+while True:
+    user_input = input("Type 'quit' to exit: ")
+    if user_input == "quit":
+        print("Goodbye!")
+        break # Instantly snaps out of the loop
