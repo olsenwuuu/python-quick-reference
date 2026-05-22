@@ -606,7 +606,7 @@ while True:
   print(scores)
   # Output: [99, 78, 45, 12]
 
-### .sorted()
+### sorted()
 * **Definition:** A built-in global function that takes any sequence (list, tuple, etc.) and returns a brand new sorted list, leaving the original collection completely untouched. It also accepts the reverse=True parameter.
 * **Use Case:** Displaying data to a user in a specific order (like sorting search results by price) while keeping the original structure unchanged in your backend database.
 * **Example:**
@@ -618,3 +618,57 @@ while True:
 
   print(display_prices)    # Output: [5.50, 10.99, 25.00]
   print(original_prices)   # Output: [10.99, 5.50, 25.00] (Untouched!)
+
+### .reverse()
+* **Definition:** A built-in list method that reverses the elements of a list in-place (meaning it permanently flips the order of the original list). Unlike sorting with reverse=True, it does not care about alphabetical or numerical values—it simply flips the positions from back to front.
+* **Use Case:** Reversing chronological data logs, flipping an undo/redo stack history, or reversing a sequence that is already pre-sorted in the opposite direction.
+* **Example:**
+  ```python
+  directions = ["North", "East", "South", "West"]
+
+  # Physically mirror the list positions permanently
+  directions.reverse()
+
+  print(directions)
+  # Output: ['West', 'South', 'East', 'North']
+
+### `reversed()`
+* **Definition:** A built-in global function that takes a sequence (like a list, tuple, or string) and returns a **reversed iterator object**, leaving the original collection completely untouched. To see it as a normal collection again, you must wrap it in a constructor function like `list()`.
+* **Use Case:** Safely iterating backwards through data using a `for` loop, or creating a reversed copy of immutable objects (like tuples or strings) that don't possess an in-place `.reverse()` method.
+* **Example:**
+  ```python
+  original_letters = ["a", "b", "c"]
+  
+  # Create a separate, reversed copy using list()
+  reversed_copy = list(reversed(original_letters))
+  
+  print(reversed_copy)      # Output: ['c', 'b', 'a']
+  print(original_letters)   # Output: ['a', 'b', 'c'] (Untouched!)
+
+---
+
+### `list()`
+* **Definition:** A built-in constructor function that creates a new list object. It can be used without arguments to initialize a completely empty list, or it can take an iterable (like a tuple, string, set, or dictionary) and convert its elements into individual items inside a new list.
+* **Use Case:** Converting data collections so you can unlock list-specific tools (like `.append()` or `.sort()`), or duplicating an existing list to make a safe, independent copy that won't overwrite the original data.
+* **Example:**
+  ```python
+  # Converting an immutable tuple into a mutable list
+  immutable_coordinates = (34.05, -118.24)
+  mutable_list = list(immutable_coordinates)
+  
+  # Now we are allowed to modify the elements!
+  mutable_list[0] = 40.71
+  
+  print(mutable_list)
+  # Output: [40.71, -118.24]
+
+### 💡 The 3 Most Common Powers of `list()`
+
+Knowing when to use the `list()` function makes handling mixed data structures much easier:
+
+#### 1. Splitting Strings into Character Arrays
+If you pass a raw string into `list()`, it breaks the string apart and converts every individual character (including spaces) into a distinct item in the list:
+```python
+letters = list("Hi 22")
+print(letters)  
+# Output: ['H', 'i', ' ', '2', '2']
