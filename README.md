@@ -672,3 +672,20 @@ If you pass a raw string into `list()`, it breaks the string apart and converts 
 letters = list("Hi 22")
 print(letters)  
 # Output: ['H', 'i', ' ', '2', '2']
+```
+
+---
+
+### `.copy()`
+* **Definition:** A built-in list method that returns a **shallow copy** of an existing list. It creates a brand-new list object in memory filled with the exact same values, separating it from the original list.
+* **Use Case:** Creating a safe backup or working copy of a list before applying destructive mutations (like `.clear()`, `.remove()`, or `.sort()`), ensuring your original dataset remains preserved.
+* **Example:**
+  ```python
+  original_users = ["alex", "olsen"]
+  
+  # Create an independent duplicate in memory
+  backup_users = original_users.copy()
+  backup_users.append("guest")
+  
+  print(backup_users)    # Output: ['alex', 'olsen', 'guest']
+  print(original_users)   # Output: ['alex', 'olsen'] (Safely untouched!)
