@@ -479,7 +479,7 @@ while True:
         break # Instantly snaps out of the loop
 ```
 
-## 17. Conditional Iteration
+## 18. Data Collections
 
 ### list
 * **Definition:** A mutable, ordered sequence of elements enclosed in square brackets []. Lists allow duplicate items and maintain the exact order in which elements are inserted.
@@ -529,3 +529,51 @@ while True:
 
   print(user_profile["email"])
   # Output: olsenwuuu@gmail.com
+
+## 19. List Methods
+
+### .append()
+* **Definition:** A built-in list method that adds a single element to the very end of an existing list.
+* **Use Case:** Building up a list dynamically as data arrives, such as tracking history logs, taking user inputs over time, or collecting valid passwords.
+* **Example:**
+  ```python
+  history = ["page1", "page2"]
+  history.append("page3")
+
+  print(history)
+  # Output: ['page1', 'page2', 'page3']
+
+
+### .insert()
+* **Definition:** A built-in list method that adds an element at a specific index position shifting all subsequent elements one position to the right. Syntax: list.insert(index, element).
+* **Use Case:** Placing high-priority items at the beginning of a queue, or inserting data into a specific ordered position without replacing what was already there.
+* **Example:**
+  ```python
+  queue = ["UserA", "UserB"]
+  # Insert "VIP_User" at the very front (index 0)
+  queue.insert(0, "VIP_User")
+
+  print(queue)
+  # Output: ['VIP_User', 'UserA', 'UserB']
+
+### .remove()
+* **Definition:** A built-in list method that searches for and deletes the first occurrence of a specific value from the list. If the value is not found, it throws a ValueError.
+* **Use Case:** Deleting specific items by name rather than position (e.g., kicking a specific user out of a chatroom or deleting a banned word from a list).
+* **Example:**
+  ```python
+  active_users = ["olsen", "guest12", "alex"]
+  active_users.remove("guest12")
+
+  print(active_users)
+  # Output: ['olsen', 'alex']
+
+### .clear()
+* **Definition:** A built-in list method that removes all elements from a list, leaving it completely empty.
+* **Use Case:** Resetting an application state, wiping out a shopping cart after a checkout is completed, or emptying temporary data buffers without deleting the list variable itself.
+* **Example:**
+  ```python
+  session_data = ["token_123", "login_time"]
+  session_data.clear()
+
+  print(session_data)
+  # Output: []
