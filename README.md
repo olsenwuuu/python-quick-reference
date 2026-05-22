@@ -577,3 +577,44 @@ while True:
 
   print(session_data)
   # Output: []
+
+### .pop()
+* **Definition:** A built-in list method that removes and returns an element from a specific index position. If no index is specified, it defaults to removing and returning the very last element in the list.
+* **Use Case:** Implementing undo buttons, handling a stack of cards, or removing items from a "To-Do" queue where you need to process or display the item after it gets kicked out of the list.
+* **Example:**
+  ```python
+  notifications = ["Like", "Comment", "Follow"]
+
+  # Remove and capture the last item
+  latest_alert = notifications.pop()
+
+  print(latest_alert)   # Output: Follow
+  print(notifications)  # Output: ['Like', 'Comment']
+
+## 20. Sorting Methods
+
+### .sort()
+* **Definition:** A built-in list method that sorts the elements of a list in-place (meaning it permanently alters the original list). By default, it sorts strings alphabetically and numbers in ascending order. Setting the parameter reverse=True flips the order to descending.
+* **Use Case:** Permanently reordering an existing database cache or leaderboard from highest to lowest score where you don't need to retain the original, unsorted order.
+* **Example:**
+  ```python
+  scores = [45, 99, 12, 78]
+
+  # Permanently sort from highest to lowest
+  scores.sort(reverse=True)
+
+  print(scores)
+  # Output: [99, 78, 45, 12]
+
+### .sorted()
+* **Definition:** A built-in global function that takes any sequence (list, tuple, etc.) and returns a brand new sorted list, leaving the original collection completely untouched. It also accepts the reverse=True parameter.
+* **Use Case:** Displaying data to a user in a specific order (like sorting search results by price) while keeping the original structure unchanged in your backend database.
+* **Example:**
+  ```python
+  original_prices = [10.99, 5.50, 25.00]
+
+  # Generate a temporary, sorted copy (lowest to highest)
+  display_prices = sorted(original_prices)
+
+  print(display_prices)    # Output: [5.50, 10.99, 25.00]
+  print(original_prices)   # Output: [10.99, 5.50, 25.00] (Untouched!)
