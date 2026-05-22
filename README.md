@@ -477,3 +477,55 @@ while True:
     if user_input == "quit":
         print("Goodbye!")
         break # Instantly snaps out of the loop
+```
+
+## 17. Conditional Iteration
+
+### list
+* **Definition:** A mutable, ordered sequence of elements enclosed in square brackets []. Lists allow duplicate items and maintain the exact order in which elements are inserted.
+* **Use Case:** Storing collections of data that need to be updated, appended to, or reordered frequently (e.g., a user's shopping cart, a list of active connection IDs, or changing passwords).
+* **Example:**
+  ```python
+  # Creating and modifying a list
+  todo_list = ["Clean string", "Check length"]
+  todo_list.append("Verify symbols")
+
+  print(todo_list)
+  # Output: ['Clean string', 'Check length', 'Verify symbols']
+
+### tuple
+* **Definition:** An immutable (unchangeable), ordered sequence of elements enclosed in parentheses (). Once created, you cannot add, remove, or alter its elements.
+* **Use Case:** Protecting data that must never change during execution to prevent accidental bugs (e.g., server IP addresses, geospatial GPS coordinates like latitude/longitude, or fixed configuration settings).
+* **Example:**
+  ```python
+  # Creating a tuple (cannot be modified)
+  db_config = ("localhost", 5432)
+
+  print(db_config[0])
+  # Output: localhost
+
+### set
+* **Definition:** An unordered collection of unique elements enclosed in curly braces {}. Sets do not allow duplicate items, and because they are unordered, they cannot be accessed using index numbers (like [0]).
+* **Use Case:** Instantly stripping duplicate values out of a sequence, or performing mathematical comparisons like finding common elements between two collections (intersections).
+* **Example:**
+  ```python
+  # Sets automatically eliminate duplicates
+  raw_voters = {"user1", "user2", "user1", "user3"}
+
+  print(raw_voters)
+  # Output: {'user1', 'user2', 'user3'}
+
+### dict (Dictionary)
+* **Definition:** An ordered (as of Python 3.7+) collection of key-value pairs enclosed in curly braces {key: value}. Keys must be completely unique and act as labels to retrieve their corresponding data values.
+* **Use Case:** Representing structured real-world objects or records where data points need to be looked up quickly by a name rather than an index position (e.g., user profiles, database rows, or system configurations).
+* **Example:**
+  ```python
+  # Creating and accessing a user dictionary
+    user_profile = {
+      "email": "olsenwuuu@gmail.com",
+      "attempts": 3,
+      "is_active": True
+  }
+
+  print(user_profile["email"])
+  # Output: olsenwuuu@gmail.com
