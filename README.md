@@ -1161,3 +1161,70 @@ print(even_squares)  # Output: [4, 16, 36]
 
 ## Venn Diagram Visualization Guide
 <img width="1296" height="738" alt="image" src="https://github.com/user-attachments/assets/5ae6c372-f241-430e-8846-ce9fd52ff6cb" />
+
+---
+
+### `.issubset()`
+* **Definition:** A set method (or operator `<=`) that checks whether **all elements** of the current set are completely contained inside a specified target set.
+* **Use Case:** Verifying authorization requirements, such as checking if a user's requested access scopes are completely within their allowed corporate permission tier.
+* **Syntax:** `set_a.issubset(set_b)` or `set_a <= set_b`
+* **Example:**
+  ```python
+  required_skills = {"Python", "Git"}
+  candidate_skills = {"Python", "Git", "SQL", "Docker"}
+  
+  # Does the candidate have every single required skill?
+  is_qualified = required_skills.issubset(candidate_skills)
+  
+  print(is_qualified)
+  # Output: True
+
+### `.issuperset()`
+* **Definition:** A set method (or operator `>=`) that acts as the exact mirror image of `issubset()`. It checks whether the current set **completely encloses all elements** of a specified target set.
+* **Use Case:** Verifying inventory fulfillment, like checking if a warehouse inventory set fully covers all the items inside a customer's shopping order set.
+* **Syntax:** `set_a.issuperset(set_b)` or `set_a >= set_b`
+* **Example:**
+  ```python
+  warehouse_stock = {"ItemA", "ItemB", "ItemC", "ItemD"}
+  customer_order  = {"ItemB", "ItemD"}
+  
+  # Can the warehouse fulfill the entire order right now?
+  can_ship = warehouse_stock.issuperset(customer_order)
+  
+  print(can_ship)
+  # Output: True
+
+### `.isdisjoint()`
+* **Definition:** A set method that checks whether two sets share **absolutely zero elements in common**. It returns `True` if their intersection is completely empty, and `False` if they share even a single overlapping item.
+* **Use Case:** Collision detection routines, such as ensuring a new calendar booking does not conflict with blocked time slots, or validating that an account doesn't belong to a safe list and a blocklist simultaneously.
+* **Syntax:** `set_a.isdisjoint(set_b)`
+* **Example:**
+  ```python
+  banned_ips = {"192.168.1.1", "10.0.0.5"}
+  visitor_ip  = {"172.16.0.42"}
+  
+  # Is the visitor completely clear of the ban list?
+  is_safe = visitor_ip.isdisjoint(banned_ips)
+  
+  print(is_safe)
+  # Output: True
+
+### 💡 Visualizing Conditional Sets: The Enclosure Rules
+
+Because these methods evaluate structural relationships, you can picture them as containment zones:
+
+
+
+* **`A.issubset(B)`** means Set A sits completely *inside* the borders of Set B.
+* **`A.issuperset(B)`** means Set A is the big container holding Set B *inside* of it.
+* **`A.isdisjoint(B)`** means Set A and Set B are completely separate islands with clear water between them.
+
+#### ⚠️ The Identical Set Catch
+What happens if two sets are perfectly identical? Do `issubset()` and `issuperset()` still return `True`?
+
+```python
+set_x = {1, 2, 3}
+set_y = {1, 2, 3}
+
+print(set_x.issubset(set_y))    # Output: True
+print(set_x.issuperset(set_y))  # Output: True
