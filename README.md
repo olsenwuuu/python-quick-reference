@@ -1044,4 +1044,7 @@ even_squares = list(map(lambda x: x * x, filter(lambda x: x % 2 == 0, numbers)))
 even_squares = [x * x for x in numbers if x % 2 == 0]
 
 print(even_squares)  # Output: [4, 16, 36]
-
+```
+---
+## List Operations Reference
+<img width="1276" height="729" alt="image" src="https://github.com/user-attachments/assets/aa5b35ff-4881-4518-9fde-df96d27d9c5b" />
