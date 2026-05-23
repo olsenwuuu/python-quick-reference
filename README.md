@@ -1228,3 +1228,7 @@ set_y = {1, 2, 3}
 
 print(set_x.issubset(set_y))    # Output: True
 print(set_x.issuperset(set_y))  # Output: True
+```
+---
+## Data Structure Guide
+<img width="923" height="492" alt="image" src="https://github.com/user-attachments/assets/1535f485-f1be-41c9-be08-19214c5f86cc" />
