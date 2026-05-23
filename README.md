@@ -690,8 +690,6 @@ print(letters)
   print(backup_users)    # Output: ['alex', 'olsen', 'guest']
   print(original_users)   # Output: ['alex', 'olsen'] (Safely untouched!)
 
----
-
 ### `copy.deepcopy()`
 * **Definition:** A function from Python's built-in `copy` module that creates a **complete, independent copy** of a compound object (like nested lists or dictionaries). Unlike a shallow copy, it recursively clones *every single level* of nested data, ensuring that changes to the copy cannot affect the original structure at any depth.
 * **Use Case:** Duplicating complex, multi-dimensional structures like game boards (e.g., chess matrices), nested configurations, or JSON database responses where inner elements need to be safely modified.
@@ -729,3 +727,63 @@ shallow.append("New Item")
 # But changing an inner item ruins the original!
 shallow[0][0] = 99
 print(original)  # Output: [[99, 2]] <-- Broken!
+```
+---
+
+### `.extend()`
+* **Definition:** A built-in list method that appends all elements from another iterable (like a list, tuple, or set) to the **end** of the current list. It modifies the original list in-place.
+* **Use Case:** Merging two separate datasets together, such as combining an archived user database with a newly registered user batch, or flattening a collection of batches into a single stream.
+* **Example:**
+  ```python
+  group_a = ["alex", "olsen"]
+  group_b = ["guest1", "guest2"]
+  
+  # Unpack group_b and drop all items into group_a
+  group_a.extend(group_b)
+  
+  print(group_a)
+  # Output: ['alex', 'olsen', 'guest1', 'guest2']
+
+### 💡 `.append()` vs `.extend()`: The Nested List Trap
+
+It is incredibly easy to confuse `.append()` and `.extend()` because they both add things to the end of your list. However, how they treat a secondary list is completely different:
+
+
+#### 1. What happens with `.append()`
+If you append a list, Python treats that whole list as **one single item**. It drops the entire container inside, creating a nested array (a list inside a list):
+```python
+letters = ["a", "b"]
+letters.append(["c", "d"])
+
+print(letters)  
+# Output: ['a', 'b', ['c', 'd']] <-- Length is only 3!
+```
+### 2. What happens with .extend()
+If you extend a list, Python acts like a customs agent—it opens up the second container, unpacks each individual item, and pushes them into the main list one by one:
+```python
+letters = ["a", "b"]
+letters.extend(["c", "d"])
+
+print(letters)  
+# Output: ['a', 'b', 'c', 'd'] <-- Length is 4!
+```
+
+---
+
+### `zip()`
+* **Definition:** A built-in global function that takes multiple iterables (like lists, tuples, or strings) and aggregates their corresponding elements into pairs (tuples). It returns a **zip iterator object** containing these paired values. To view the final structured pairs, you can wrap it in a `list()`, `dict()`, or loop through it directly.
+* **Use Case:** Pairing parallel datasets together matching items by index, such as aligning a list of user IDs with their respective email addresses, or locking high scores to player names.
+* **Example:**
+  ```python
+  names = ["alex", "olsen"]
+  scores = [95, 99]
+  
+  # Pair the items together by index position
+  leaderboard = list(zip(names, scores))
+  
+  print(leaderboard)
+  # Output: [('alex', 95), ('olsen', 99)]
+
+---
+### Difference between Iterable and Iterator
+<img width="1250" height="703" alt="image" src="https://github.com/user-attachments/assets/2ad52103-0784-487a-9bf7-e7e75d2859af" />
