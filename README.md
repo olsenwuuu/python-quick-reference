@@ -787,3 +787,84 @@ print(letters)
 ---
 ### Difference between Iterable and Iterator
 <img width="1250" height="703" alt="image" src="https://github.com/user-attachments/assets/2ad52103-0784-487a-9bf7-e7e75d2859af" />
+
+---
+
+### `enumerate()`
+* **Definition:** A built-in global function that takes an iterable (like a list, tuple, or string) and returns an **enumerate iterator object**. Each element yielded by the iterator is a tuple containing a count/index (starting from `0` by default) and the corresponding value from the collection.
+* **Use Case:** Tracking index positions while looping through data without having to manually initialize and increment a counter variable outside the loop.
+* **Example:**
+  ```python
+  tasks = ["Clean string", "Check length", "Verify symbols"]
+  
+  # Loop through items while automatically tracking their placement index
+  for index, task in enumerate(tasks):
+      print(f"Task #{index + 1}: {task}")
+      
+  # Output:
+  # Task #1: Clean string
+  # Task #2: Check length
+  # Task #3: Verify symbols
+
+---
+
+### `map()`
+* **Definition:** A built-in global function that transforms data by executing a specified function on **every individual item** inside an iterable (like a list, tuple, or string). It returns a **map iterator object**, which can be converted back into a standard collection using constructors like `list()` or `tuple()`.
+* **Use Case:** Mass-transforming datasets without writing explicit `for` loops, such as casting a list of string inputs into integers, converting data scales (like Fahrenheit to Celsius), or cleaning white spaces from user profiles.
+* **Example:**
+  ```python
+  # A simple transformation function
+  def double_num(n):
+      return n * 2
+  
+  numbers = [1, 2, 3, 4]
+  
+  # Apply double_num to every single item automatically
+  doubled_list = list(map(double_num, numbers))
+  
+  print(doubled_list)
+  # Output: [2, 4, 6, 8]
+
+### 💡 The 3 Most Common Powers of `map()`
+
+`map()` is an incredibly efficient way to pipeline transformations on raw data streams. 
+
+#### 1. Instant Data Type Casting
+When taking data from files or user inputs, numbers often arrive trapped inside strings (e.g., `["10", "20"]`). You can use `map()` paired with the built-in `int` or `float` functions to cast the entire dataset instantly:
+
+
+
+```python
+string_prices = ["4.99", "10.50", "99.00"]
+
+# Transform every string item directly into a float
+float_prices = list(map(float, string_prices))
+
+print(float_prices)
+# Output: [4.99, 10.5, 99.0]
+```
+
+#### 2. Cleaning Data in Bulk
+If you receive raw text records filled with erratic spacing, you can use map() to pass standard string methods like .strip() across the entire list at once to scrub it clean:
+
+
+```python
+raw_usernames = [" alex ", "olsen  ", "  guest "]
+
+# Strip the leading/trailing spaces from every item
+clean_usernames = list(map(str.strip, raw_usernames))
+
+print(clean_usernames)
+# Output: ['alex', 'olsen', 'guest']
+```
+#### 3. Why map() is better than a manual for loop
+When transforming data, beginners often write loops that manually create empty lists and append elements one by one. map() handles this process directly in memory, making it faster and significantly cleaner:
+```python
+# The Clunky Way (Avoid this)
+low_words = ["hi", "bye"]
+caps_words = []
+for word in low_words:
+    caps_words.append(word.upper())
+
+# The Clean Pythonic Way (Use this)
+caps_words = list(map(str.upper, ["hi", "bye"]))
