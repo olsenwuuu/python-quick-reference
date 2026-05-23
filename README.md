@@ -888,3 +888,160 @@ caps_words = list(map(str.upper, ["hi", "bye"]))
   
   print(even_numbers)
   # Output: [2, 4, 6]
+
+---
+
+### `lambda`
+* **Definition:** An anonymous, single-line function that can take any number of arguments but can only execute a **single expression**. It doesn't use a `def` keyword or a `return` statement; it automatically evaluates the expression and passes back the result.
+* **Use Case:** Creating quick, temporary "throwaway" functions that you only need to use once—most commonly inside functions like `map()`, `filter()`, or `.sort()`.
+* **Example:**
+  ```python
+  # A quick lambda function that adds 10 to any number passed into it
+  add_ten = lambda x: x + 10
+  
+  print(add_ten(5))
+  # Output: 15
+
+### 💡 The Anatomy of a Lambda Expression
+
+To understand a `lambda`, look at how it strips away all the structural "boilerplate" code of a traditional function down to a single line:
+
+
+
+```python
+# The Traditional Way
+def square(x):
+    return x * x
+
+# The Lambda Way
+lambda x: x * x
+```
+
+### 🛠️ The 3 Most Common Powers of lambda
+You will rarely see a lambda assigned to a variable name like add_ten = lambda... in real-world code. Instead, you'll see them dropped raw into other functions to perform quick operations:
+
+#### 1. Instant Transformations with map()
+Instead of writing a whole def block just to perform a tiny mathematical calculation or text tweak on a list, you can slide a lambda right into map():
+```python
+numbers = [1, 2, 3]
+
+# Double every number in the list on the fly
+doubled = list(map(lambda x: x * 2, numbers))
+
+print(doubled)  # Output: [2, 4, 6]
+```
+
+#### 2. Fast Screening with filter()
+You can use a lambda to create temporary True/False tests inside your filters:
+```python
+ages = [12, 17, 21, 15, 34]
+
+# Keep only ages that are 18 or above
+adults = list(filter(lambda age: age >= 18, ages))
+
+print(adults)  # Output: [21, 34]
+```
+
+#### 3. Advanced Sorting Customization (key=)
+Remember your .sort() method from earlier? You can pass a lambda into its optional key parameter to change how Python evaluates the sorting order. For example, if you have a list of tuples representing products and prices, you can sort specifically by the price tag (the second element, index 1):
+```python
+products = [("Shirt", 25), ("Hat", 15), ("Shoes", 80)]
+
+# Sort the products based on index 1 (the price) of each tuple
+products.sort(key=lambda item: item[1])
+
+print(products)
+# Output: [('Hat', 15), ('Shirt', 25), ('Shoes', 80)]
+```
+
+---
+
+### List Comprehension
+* **Definition:** A compact, elegant syntax structure used to create a **brand-new list** by looping over an existing iterable and applying transformations or filters to its elements in a single line of code.
+* **Use Case:** Creating modified copies of arrays, flattening matrix structures, or handling bulk data transformations with highly readable, optimized code.
+* **Example:**
+  ```python
+  numbers = [1, 2, 3, 4]
+  
+  # Create a new list where every number is squared
+  squared_nums = [x * x for x in numbers]
+  
+  print(squared_nums)
+  # Output: [1, 4, 9, 16]
+
+### 💡 Deciphering the Syntax: The Core Blueprint
+
+The easiest way to write a list comprehension without getting confused is to look at how it rearranges a traditional, multi-line `for` loop inside a set of square brackets `[...]`:
+
+```python
+# Data with Baraa Example
+domains = ['www.google.com', 
+           'openai.com',
+           'localhost',
+           'WWW.DATAWITHBARAA.COM']
+
+cleaned = [
+    # Data Transformation
+    d.lower().replace('www.', '')
+    # For Loop
+    for d in domains
+    # Data Filtering
+    if '.' in d
+]
+
+cleaned = [
+    d.lower().replace('www.', '')
+    for d in domains
+    if '.' in d
+]
+
+print(cleaned)
+
+# Other example
+# The Traditional Way (3 lines)
+new_list = []
+for item in original_list:
+    new_list.append(expression)
+
+# The Comprehension Way (1 line)
+new_list = [expression for item in original_list]
+```
+
+### 🛠️ The 3 Most Common Powers of Comprehensions
+
+#### 1. The map() Replacement (Bulk Transformation)
+Instead of passing a lambda inside a map() function and wrapping it in a list() constructor, you can execute data type conversions or math transformations directly:
+
+```python
+string_prices = ["1.99", "4.50", "10.00"]
+
+# Cast everything to floats using comprehension
+float_prices = [float(price) for price in string_prices]
+
+print(float_prices)  # Output: [1.99, 4.5, 10.0]
+```
+
+#### 2. The filter() Replacement (Adding an if Statement)
+You can append an if statement to the very end of your list comprehension to drop unwanted elements. This acts exactly like a filter() function:
+```python
+ages = [12, 25, 17, 31, 14]
+
+# Keep only the age values that are 18 or older
+adults = [age for age in ages if age >= 18]
+
+print(adults)  # Output: [25, 31]
+```
+
+#### 3. Combining Transformations and Filters Simultanously
+The true magic of list comprehensions shines when you want to transform elements and filter them at the exact same time. Doing this with map() and filter() requires nesting them inside each other, which gets incredibly messy:
+```python
+numbers = [1, 2, 3, 4, 5, 6]
+
+# The Clunky Way (Nesting map and filter with lambdas)
+even_squares = list(map(lambda x: x * x, filter(lambda x: x % 2 == 0, numbers)))
+
+# The Clean Pythonic Way (List Comprehension)
+even_squares = [x * x for x in numbers if x % 2 == 0]
+
+print(even_squares)  # Output: [4, 16, 36]
+
