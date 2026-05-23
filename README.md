@@ -868,3 +868,23 @@ for word in low_words:
 
 # The Clean Pythonic Way (Use this)
 caps_words = list(map(str.upper, ["hi", "bye"]))
+```
+
+---
+
+### `filter()`
+* **Definition:** A built-in global function that extracts items from an iterable (like a list, tuple, or string) based on whether they meet a specific condition. It passes every item into a "testing function" that returns `True` or `False`. If the function returns `True`, the item is kept; if `False`, it is discarded. It returns a **filter iterator object**, which can be converted back into a list using `list()`.
+* **Use Case:** Cleaning or isolating datasets based on specific rules, such as pulling only active users out of a database, removing empty strings from a list of inputs, or isolating even numbers.
+* **Example:**
+  ```python
+  # A testing function that returns True only if a number is even
+  def is_even(n):
+      return n % 2 == 0
+  
+  numbers = [1, 2, 3, 4, 5, 6]
+  
+  # Keep only the items that pass the is_even test
+  even_numbers = list(filter(is_even, numbers))
+  
+  print(even_numbers)
+  # Output: [2, 4, 6]
