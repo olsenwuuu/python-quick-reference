@@ -1096,3 +1096,68 @@ print(even_squares)  # Output: [4, 16, 36]
   
   print(permissions)
   # Output: {'read', 'write'}
+
+---
+
+### `.union()`
+* **Definition:** A set method (or operator `|`) that combines all unique elements from both sets into a brand-new set. 
+* **Use Case:** Creating a master list of all unique entities across multiple departments, or combining global and regional server permissions.
+* **Syntax:** `set_a.union(set_b)` or `set_a | set_b`
+* **Example:**
+  ```python
+  team_a = {"alex", "olsen"}
+  team_b = {"olsen", "guest"}
+  
+  # Get everyone involved in both teams
+  everyone = team_a.union(team_b)
+  
+  print(everyone)
+  # Output: {'alex', 'olsen', 'guest'}
+
+### `.intersection()`
+* **Definition:** A set method (or operator `&`) that returns a brand-new set containing only the elements that exist in **both** sets.
+* **Use Case:** Finding mutual connections on a social network, discovering items matching multiple filter checkboxes, or finding common overlapping buyer groups.
+* **Syntax:** `set_a.intersection(set_b)` or `set_a & set_b`
+* **Example:**
+  ```python
+  buyers_may = {"alex", "olsen"}
+  buyers_june = {"olsen", "guest"}
+  
+  # Find repeat customers who bought in both months
+  repeat_customers = buyers_may.intersection(buyers_june)
+  
+  print(repeat_customers)
+  # Output: {'olsen'}
+
+### `.difference()`
+* **Definition:** A set method (or operator `-`) that returns a brand-new set containing elements that exist in the first set, but **not** in the second set.
+* **Use Case:** Generating actionable to-do items by subtracting completed tasks from a master task pool, or filtering out a blocklist of banned user accounts.
+* **Syntax:** `set_a.difference(set_b)` or `set_a - set_b`
+* **Example:**
+  ```python
+  all_tasks = {"clean", "verify", "upload"}
+  done_tasks = {"clean"}
+  
+  # Find out what tasks are still left to finish
+  remaining = all_tasks.difference(done_tasks)
+  
+  print(remaining)
+  # Output: {'verify', 'upload'}
+
+### `.symmetric_difference()`
+* **Definition:** A set method (or operator `^`) that returns a brand-new set containing elements that exist in **either** of the sets, but **not in both** (it strips away the overlapping elements).
+* **Use Case:** Auditing two financial ledgers to quickly extract mismatched entries, or finding exclusive differences between two user profiles.
+* **Syntax:** `set_a.symmetric_difference(set_b)` or `set_a ^ set_b`
+* **Example:**
+  ```python
+  preferences_a = {"dark_mode", "notifications"}
+  preferences_b = {"notifications", "compact_view"}
+  
+  # Find settings unique to only one of the profiles
+  unique_settings = preferences_a.symmetric_difference(preferences_b)
+  
+  print(unique_settings)
+  # Output: {'dark_mode', 'compact_view'}
+
+## Venn Diagram Visualization Guide
+<img width="1296" height="738" alt="image" src="https://github.com/user-attachments/assets/5ae6c372-f241-430e-8846-ce9fd52ff6cb" />
