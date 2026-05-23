@@ -1232,3 +1232,104 @@ print(set_x.issuperset(set_y))  # Output: True
 ---
 ## Data Structure Guide
 <img width="923" height="492" alt="image" src="https://github.com/user-attachments/assets/1535f485-f1be-41c9-be08-19214c5f86cc" />
+
+---
+## Unique Dictionary methods
+
+### `.get()`
+* **Definition:** A safe built-in dictionary method used to look up the value of a specific key. Unlike standard square-bracket lookup, if the key does not exist, `.get()` returns `None` (or a custom fallback value) instead of crashing your program.
+* **Use Case:** Extracting settings or user profile properties that might be optional, ensuring the system keeps running smoothly even if data fields are missing.
+* **Example:**
+  ```python
+  user_profile = {"username": "olsen", "role": "admin"}
+  
+  # Safe lookup for an existing key
+  print(user_profile.get("role"))  # Output: 'admin'
+  
+  # Safe lookup for a missing key
+  print(user_profile.get("email")) # Output: None (No crash!)
+  
+  # Safe lookup with a custom fallback default value
+  print(user_profile.get("theme", "dark_mode")) # Output: 'dark_mode'
+
+### `.keys()`
+* **Definition:** A built-in dictionary method that returns a dynamic **view object** containing all the keys (labels) present in the dictionary. 
+* **Use Case:** Checking if a specific field exists in a data record, or looping through all available setting options to present a configuration menu.
+* **Example:**
+  ```python
+  inventory = {"apples": 10, "bananas": 5, "oranges": 0}
+  
+  # Grab all dictionary keys
+  all_keys = inventory.keys()
+  
+  print(all_keys)
+  # Output: dict_keys(['apples', 'bananas', 'oranges'])
+
+### `.values()`
+* **Definition:** A built-in dictionary method that returns a dynamic **view object** containing all the values (data payloads) present in the dictionary.
+* **Use Case:** Performing aggregate calculations across your data records, such as summing up an entire cart invoice total or finding the average high score.
+* **Example:**
+  ```python
+  item_prices = {"shirt": 25, "hat": 15, "shoes": 80}
+  
+  # Sum up all the values directly
+  total_cart_value = sum(item_prices.values())
+  
+  print(total_cart_value)  # Output: 120
+
+### `.items()`
+* **Definition:** A built-in dictionary method that returns a dynamic **view object** containing pairs of keys and values structured as individual tuples: `(key, value)`.
+* **Use Case:** Simultaneously unpacking both the label and the data payload inside a `for` loop so you can process and print them together cleanly.
+* **Example:**
+  ```python
+  user_statuses = {"alex": "online", "olsen": "away"}
+  
+  # Unpack keys and values simultaneously in a loop
+  for name, status in user_statuses.items():
+      print(f"{name} is currently {status}")
+      
+  # Output:
+  # alex is currently online
+  # olsen is currently away
+
+### `__getitem__` (Square Bracket Lookup `[]`)
+* **Definition:** The underlying "magic method" triggered whenever you use standard **square bracket notation** (`dict[key]`) to look up a value. Unlike `.get()`, if the requested key is missing, it explicitly raises a `KeyError` and halts execution.
+* **Use Case:** Looking up non-negotiable data fields that *must* be present for your code to function properly, where a missing key means a critical failure has occurred.
+* **Example:**
+  ```python
+  database_row = {"id": 1002, "status": "active"}
+  
+  # Traditional lookup via __getitem__ syntax
+  print(database_row["id"])  # Output: 1002
+  
+  # Trying to access a missing key throws an error!
+  print(database_row["email"])  # KeyError: 'email'
+
+### `dict.fromkeys()`
+* **Definition:** A class method used to generate a **brand-new dictionary** from an iterable sequence of keys (like a list or tuple). Every single key in the new dictionary is assigned the exact same initial value (which defaults to `None` if left blank).
+* **Use Case:** Instantiating a clean state-tracking system or scorecard from a master list of categories, initializing user profile configurations, or building frequency counter templates.
+* **Syntax:** `dict.fromkeys(keys_iterable, default_value)`
+* **Example:**
+  ```python
+  categories = ["electronics", "clothing", "groceries"]
+  
+  # Initialize an inventory dictionary where all departments start at 0 stock
+  stock_sheet = dict.fromkeys(categories, 0)
+  
+  print(stock_sheet)
+  # Output: {'electronics': 0, 'clothing': 0, 'groceries': 0}
+
+### `isinstance()`
+* **Definition:** A built-in global function that checks whether a specific object is an instance of a specified data type (like `str`, `int`, `list`, etc.) or a custom class. It returns a simple boolean: `True` or `False`.
+* **Use Case:** Creating safe guardrails inside your functions to validate that incoming data matches the exact format your code expects before processing it, preventing accidental runtime crashes.
+* **Syntax:** `isinstance(object, type_or_tuple_of_types)`
+* **Example:**
+  ```python
+  data_entry = [1, 2, 3]
+  
+  # Check if data_entry is a list before trying to use list methods
+  if isinstance(data_entry, list):
+      data_entry.append(4)
+      print("Item added safely!")
+  else:
+      print("Error: Input data must be a valid list structure.")
