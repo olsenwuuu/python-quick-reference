@@ -1048,3 +1048,51 @@ print(even_squares)  # Output: [4, 16, 36]
 ---
 ## List Operations Reference
 <img width="1276" height="729" alt="image" src="https://github.com/user-attachments/assets/aa5b35ff-4881-4518-9fde-df96d27d9c5b" />
+
+
+---
+## Unique Methods for Sets
+
+### `.add()`
+* **Definition:** A built-in set method that adds a **single element** to a set. If the element already exists within the set, the set remains completely unchanged (no error is thrown, it simply ignores the duplicate).
+* **Use Case:** Tracking unique actions or telemetry logs in real-time, like logging unique IP addresses visiting a server or tracking unique badges a player has unlocked.
+* **Example:**
+  ```python
+  unlocked_badges = {"Rookie", "Sniper"}
+  
+  # Add a new unique badge
+  unlocked_badges.add("Survivor")
+  # Try to add a duplicate badge
+  unlocked_badges.add("Rookie") 
+  
+  print(unlocked_badges)
+  # Output: {'Rookie', 'Sniper', 'Survivor'} (Order may vary!)
+
+### `.update()`
+* **Definition:** A built-in set method that adds **multiple elements** from an iterable (like a list, tuple, string, or another set) into the current set. It unpacks the collection and filters out any duplicate values automatically in-place.
+* **Use Case:** Batch-importing raw data streams into a master list of unique values, such as merging yesterday's email subscriber list with today's new batch while guaranteeing no duplicates.
+* **Example:**
+  ```python
+  active_users = {"alex", "olsen"}
+  new_registrations = ["guest1", "alex", "guest2"] # 'alex' is a duplicate
+  
+  # Unpack and merge the list into the set
+  active_users.update(new_registrations)
+  
+  print(active_users)
+  # Output: {'alex', 'olsen', 'guest1', 'guest2'}
+
+### `.discard()`
+* **Definition:** A built-in set method that removes a specific element from a set if it exists. Crucially, **if the element is not found, it does nothing and moves on safely** without crashing your program.
+* **Use Case:** Cleanly deleting a user session tag, revoking a permission tier, or clearing a specific filter checkbox where you want to ensure the item is gone without needing to check if it was there first.
+* **Example:**
+  ```python
+  permissions = {"read", "write", "execute"}
+  
+  # Safely remove an existing item
+  permissions.discard("execute")
+  # Try to remove something that isn't there
+  permissions.discard("admin") # No error!
+  
+  print(permissions)
+  # Output: {'read', 'write'}
