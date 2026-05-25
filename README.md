@@ -1606,3 +1606,36 @@ remediation_rate, automation_rate = calculate_remediation_metrics()
 print(f"Fixed: {remediation_rate}%, Saved: {automation_rate}%")
 # Output: Fixed: 90%, Saved: 80%
 ```
+---
+
+### `with` (Context Managers)
+* **Definition:** A built-in Python keyword used to wrap the execution of a block of code with methods defined by a context manager. It guarantees that critical setup and teardown actions—such as opening and safely closing a file or database connection—are executed automatically, even if the code inside the block throws a catastrophic error.
+* **Use Case:** Safely reading/writing local source files, establishing temporary connections to cloud data warehouses, or acquiring and releasing thread locks without risking memory leaks.
+* **Example:**
+  ```python
+  # Open a file, read its text contents, and automatically close it
+  with open("remediation_log.txt", "r") as file:
+      log_data = file.read()
+      print("File processed successfully.")
+  
+  # The file is completely closed at this exact line!
+
+---
+
+### Docstring (Documentation String)
+* **Definition:** A specially formatted string literal enclosed in **triple quotes (`"""..."""`)** that sits as the very first statement inside a module, function, class, or method definition. Unlike a standard comment (`#`), Python preserves docstrings at runtime, attaching them to the object's `__doc__` attribute so they can be read dynamically.
+* **Use Case:** Providing explicit inline documentation that details what a code block does, what inputs it expects, what it returns, and any errors it might raise.
+* **Example:**
+  ```python
+  def calculate_remediation_rate(total_errors, fixed_errors):
+      """
+      Calculates the percentage of data quality errors successfully resolved.
+      
+      Parameters:
+      total_errors (int): The starting number of identified data discrepancies.
+      fixed_errors (int): The number of verified resolved anomalies.
+      
+      Returns:
+      float: The clean success rate formatted as a decimal fraction.
+      """
+      return fixed_errors / total_errors
